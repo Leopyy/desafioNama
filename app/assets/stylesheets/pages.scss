@@ -1,0 +1,19 @@
+.container {
+  font-family: sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  margin: 30vh auto;
+  width: 700px;
+  min-height: 40vh;  
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 0 0 15px rgba(0,0,0,0.2);
+}
+
+h1 {
+  font-size: 48px;
+  color: #5E6973;
+  font-family: sans-serif;
+}
