@@ -1,11 +1,12 @@
 <%= simple_form_for(@report) do |f| %>
 
-  <div class="form-inputs">
+  <div class="form">
     <%= f.input :title %>
+    <br>
     <%= f.input :file, as: :file %>
   </div>
 
-  <div class="form-actions">
-    <%= f.button :submit , class: "btn btn-flat-log"%>
+  <div class="form">
+    <%= f.button :submit, "Enviar Relatório", class: "btn btn-gray"%>
   </div>
   <% end %>
