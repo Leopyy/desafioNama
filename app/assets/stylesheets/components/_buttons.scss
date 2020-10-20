@@ -1,0 +1,17 @@
+.btn-gray {
+  color: white;
+  padding: 8px 24px;
+  border-radius: 4px;
+  background: #5E6973;
+  transition: 0.4s;
+  border: 2px solid white;
+  margin: 16px;
+  text-decoration: none;
+}
+
+.btn-gray:hover {
+  background: white;
+  color: #5E6973;
+  transition: 0.4s;
+  border: 2px solid #5E6973;
+}
