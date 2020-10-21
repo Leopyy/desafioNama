@@ -1,0 +1,25 @@
+<div class="container-items">
+  <table>
+    <tr>
+      <th>Comprador</th>
+      <th>Descrição</th>
+      <th>Preço Unitário</th>
+      <th>Quantidade</th>
+      <th>Endereço</th>
+      <th>Fornecedor</th>
+    </tr>
+    <% @items.each do |item| %>
+      <tr>
+        <td><%= item[:buyer] %></td>
+        <td><%= item[:description] %></td>
+        <td><%= item[:price] %></td>
+        <td><%= item[:quantity] %></td>
+        <td><%= item[:adress] %></td>
+        <td><%= item[:supplyer] %></td>
+      </tr>
+    <% end %>
+  </table>
+</div>
+<div class="center">
+  <p><%= link_to 'Voltar', root_path%></p>
+</div>
