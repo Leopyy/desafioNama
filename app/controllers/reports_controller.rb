@@ -8,25 +8,24 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
   end
-
-  def parse
-    csv_options = { col_sep: '/t', quote_char: '"', headers: :first_row }
-    filepath    = url_for(@report.file)
-    @items = []
-
-    CSV.foreach(filepath, csv_options) do |row|
-      item = { buyer: row['Comprador'], description: row['Descrição'], price: row['Preço Unitário'], quantitiy: row['Quantidade'], adress: row['Endereço'], supplyer: row['Fornecedor'] }
-      @items << item
-    end
-
-    return @items
-  end
-        
+       
   def create
     @report = Report.new(report_params)
-    @report.parse
-    if @report.save
+    if @report.save     
+      
+      csv_options = { col_sep: "\t", headers: :first_row }
+      filepath    = params[:report][:file].tempfile
+  
+      CSV.foreach(filepath, csv_options) do |row|
+        item = { buyer: row['Comprador'], description: row['Descrição'], price: row['Preço Unitário'], quantity: row['Quantidade'], adress: row['Endereço'], supplyer: row['Fornecedor'] }
+        @item = Item.new(item)
+        @item.report = @report
+        @item.save
+      end
+
       flash[:success] = "Arquivo enviado com sucesso"
+      # redirect_to show
+      
     else
       flash[:error] = "Erro. Arquivo não enviado"
       render 'new'
