@@ -8,27 +8,35 @@ class ReportsController < ApplicationController
   def new
     @report = Report.new
   end
+
+  def show
+    @report = Report.find(params[:id])
+    @income = 0
+    @report.items.each do |item|
+      @income = @income + (item.quantity * item.price)
+    end
+  end
        
   def create
     @report = Report.new(report_params)
-    if @report.save     
-      
+    if @report.save
       csv_options = { col_sep: "\t", headers: :first_row }
       filepath    = params[:report][:file].tempfile
-  
-      CSV.foreach(filepath, csv_options) do |row|
-        item = { buyer: row['Comprador'], description: row['Descrição'], price: row['Preço Unitário'], quantity: row['Quantidade'], adress: row['Endereço'], supplyer: row['Fornecedor'] }
-        @item = Item.new(item)
+        CSV.foreach(filepath, csv_options) do |row|
+        item = { buyer: row['Comprador'],
+                 description: row['Descrição'],
+                 price: row['Preço Unitário'],
+                 quantity: row['Quantidade'],
+                 adress: row['Endereço'],
+                 supplyer: row['Fornecedor'] }
+        next if item[:price] == nil
+        @item = Item.new(item)        
         @item.report = @report
         @item.save
       end
-
-      flash[:success] = "Arquivo enviado com sucesso"
-      # redirect_to show
-      
+      redirect_to @report, notice: "Arquivo enviado com sucesso"
     else
-      flash[:error] = "Erro. Arquivo não enviado"
-      render 'new'
+      render 'new', notice: "Erro. Arquivo não enviado"
     end
   end
 
