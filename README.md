@@ -1,24 +1,13 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Aplicação desenvolvida em Ruby com Ruby on Rails versão 5.2+
 
-Things you may want to cover:
+* Dependências do sistema contidas no arquivo GemFile. Necessário executar bundle install ao inicializar o app.
 
-* Ruby version
+* Banco de Dados em SQLite
 
-* System dependencies
+* Necessário executar $ Rails db:migrate ao inicializar.
 
-* Configuration
+* O aplicativo tem a função de receber arquivos txt pré-organizados, tratar os dados e exibir os itens dos relatórios e disponibilizar a receita bruta total do mesmo.
 
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Existe a função de visualizar todos os itens existentes no Banco de Dados.
